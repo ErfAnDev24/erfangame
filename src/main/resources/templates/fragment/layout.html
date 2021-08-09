@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/myStyle.css}">
+    <link rel="stylesheet" th:href="@{/css/bootstrap-select.min.css}">
+    <script th:src="@{/js/popper.min.js}" type="text/javascript"></script>
+    <script th:src="@{/js/all.js}"></script>
+    <script th:src="@{/js/jquery-3.4.1.min.js}"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+    <script th:src="@{/js/bootstrap-select.min.js}"></script>
+</head>
+<body>
+
+<div th:fragment="header">
+<header class="header d-flex justify-content-center mx-auto">
+    <h1 class="d-flex align-self-center my-header-title">ErfAn Games</h1>
+</header>
+
+<div class="my-header-margin"></div>
+
+<nav class="navbar navbar-expand-lg">
+    <a class="navbar-brand" href="#">
+        <img th:src="@{img/logo.png}" class="myBrand">
+    </a>
+
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#myNav">
+        <span class="navbar-icon">
+            <i class="fas fa-bars"></i>
+        </span>
+    </button>
+
+    <div class="collapse navbar-collapse MyToggle" id="myNav">
+
+        <ul class="navbar-nav mx-auto">
+
+            <li class="nav-item">
+                <a href="#" class="nav-link">Profile</a>
+            </li>
+
+            <li class="nav-item">
+                <a href="#" class="nav-link">Users</a>
+            </li>
+
+            <li class="nav-item">
+                <a href="#" class="nav-link">Posts</a>
+            </li>
+
+            <li class="nav-item">
+                <a href="#" class="nav-link">Categories</a>
+            </li>
+
+        </ul>
+
+        <div class="navbar-icons d-none d-lg-block">
+            <a href="#" class="nav-icon">
+                <i class="fab fa-instagram"></i>
+            </a>
+
+            <a href="#" class="nav-icon">
+                <i class="fab fa-twitter"></i>
+            </a>
+
+            <a href="#" class="nav-icon">
+                <i class="fab fa-github"></i>
+            </a>
+
+            <a href="#" class="nav-icon">
+                <i class="fab fa-facebook"></i>
+            </a>
+
+
+        </div>
+
+    </div>
+</nav>
+</div>
+
+<div th:fragment="footer">
+    <footer class="footer">
+        <nav class="myNavNavbar navbar navbar-expand">
+
+            <ul class="navbar-nav mx-auto">
+
+                <li class="nav-item mx-5">
+                    <a href="#" class="MyNav-link">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </li>
+
+                <li class="nav-item mx-5">
+                    <a href="#" class="MyNav-link">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                </li>
+
+                <li class="nav-item mx-5">
+                    <a href="#" class="MyNav-link">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </li>
+
+                <li class="nav-item mx-5">
+                    <a href="#" class="MyNav-link">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                </li>
+
+
+
+
+
+
+            </ul>
+        </nav>
+    </footer>
+</div>
+
+</body>
+</html>
