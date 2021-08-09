@@ -8,6 +8,30 @@
 
 <div th:replace="/fragment/layout::header"></div>
 
+<section class="UserSearch">
+    <p class="p-3 user-search-text">search a user that you want , based on email</p>
+
+    <form class="form-group">
+
+
+        <div class="container-fluid">
+            <div class="row mx-auto">
+
+                <div class="col-lg-6 col-md-6 col-sm-6 d-flex align-items-baseline justify-content-center">
+                    <label for="myUserEmail" class="text-nowrap">email :</label>
+                    <input type="text" id="myUserEmail" class="form-control userInputTextSearch ml-3">
+                </div>
+
+                <div class="col-lg-6 col-md-6 col-sm-6 d-flex justify-content-center">
+                    <button type="submit" class="btn myUserSearchBtn">search</button>
+                </div>
+
+            </div>
+        </div>
+
+    </form>
+
+</section>
 
 <div th:replace="/fragment/layout::footer"></div>
 </body>
