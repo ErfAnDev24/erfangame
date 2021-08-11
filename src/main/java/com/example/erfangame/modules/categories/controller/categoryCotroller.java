@@ -11,11 +11,11 @@ public class categoryCotroller {
 
     @RequestMapping(value = "" , method = RequestMethod.GET)
     public String categories(){
-        return "category/categories";
+        return "categories/categories";
     }
 
     @RequestMapping(value = "/register" , method = RequestMethod.GET)
     public String registerCategory(){
-        return "category/registerCategory";
+        return "categories/registerCategory";
     }
 }
