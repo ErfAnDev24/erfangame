@@ -8,7 +8,7 @@
 
 <div th:replace="/fragment/layout::header"></div>
 
-<section class="UserSearch">
+<section class="UserSearch" style="height: 10rem">
     <p class="p-3 user-search-text">search a user that you want , based on email</p>
 
     <form class="form-group">
@@ -30,6 +30,95 @@
         </div>
 
     </form>
+
+</section>
+
+<section class="MyPagination p-3 my-4">
+
+    <div class="float-left">
+        <a href="#">
+            <button type="button" class="btn NewBtn">NEW</button>
+        </a>
+    </div>
+
+    <div class="float-right">
+        <ul class="pagination">
+
+            <li class="page-item">
+                <a href="#" class="page-link">previous</a>
+            </li>
+
+            <li class="page-item">
+                <a href="#" class="page-link">1</a>
+            </li>
+
+            <li class="page-item">
+                <a href="#" class="page-link">2</a>
+            </li>
+
+            <li class="page-item">
+                <a href="#" class="page-link">3</a>
+            </li>
+
+            <li class="page-item">
+                <a href="#" class="page-link">next</a>
+            </li>
+
+        </ul>
+    </div>
+
+</section>
+
+<section class="usersList">
+    <table class="table">
+
+        <thead class="thead-light w-100">
+        <tr>
+            <th>Id</th>
+            <th>Email</th>
+            <th>Name</th>
+            <th>Role</th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr>
+            <th>1</th>
+            <td style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 1px">erfan01724@gmail.com</td>
+            <td style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 1px">ErfAn Pezeshkpour</td>
+            <td>ADMIN</td>
+
+            <td><button class="btn btn-success">edit</button></td>
+            <td><button class="btn btn-danger">delete</button></td>
+        </tr>
+
+        <tr>
+            <th>2</th>
+            <td style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 1px">nasheyhki@gmail.com</td>
+            <td style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 1px">nahid sheykhi</td>
+            <td>User</td>
+
+            <td><button class="btn btn-success">edit</button></td>
+            <td><button class="btn btn-danger">delete</button></td>
+        </tr>
+
+        <tr>
+            <th>3</th>
+            <td style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 1px">facebook@gmail.com</td>
+            <td style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 1px">Mark zuckerburg</td>
+            <td>User</td>
+
+            <td><button class="btn btn-success">edit</button></td>
+            <td><button class="btn btn-danger">delete</button></td>
+        </tr>
+
+
+        </tbody>
+
+    </table>
+
 
 </section>
 
