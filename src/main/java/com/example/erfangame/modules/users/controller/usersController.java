@@ -14,7 +14,7 @@ public class usersController {
         return "users/users";
     }
 
-    @RequestMapping(value = "/register")
+    @RequestMapping(value = "/register" , method = RequestMethod.GET)
     public String registerUser(){
         return "users/registerUser";
     }

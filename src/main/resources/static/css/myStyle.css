@@ -1,0 +1,219 @@
+.myBrand{
+    width: 3.5rem;
+    height: 3.5rem;
+    margin-left: 1rem;
+}
+
+.nav-icon{
+    color: #007bff;
+}
+
+.navbar-icon{
+    color: #0062cc;
+}
+
+.MyToggle{
+    transition-duration: 0.6s;
+}
+
+.header{
+    background-image: url("../img/newBack.jpg"); !important;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 20vh;
+    background-attachment: fixed;
+}
+
+.navbar{
+    background-color: #383d41;
+}
+
+.my-header-title{
+    color: darkgray;
+}
+
+.nav-link{
+    color: darkgrey;
+    transition: 0.3s;
+}
+
+.nav-link:hover{
+    color: #007bff;
+}
+
+.nav-icon{
+    color: #007bff;
+    transition: 0.3s;
+}
+
+.nav-icon:hover{
+    text-decoration: none;
+    color: white;
+}
+
+.my-header-margin{
+    height: 2vh;
+    background-image: linear-gradient(to left,#1488CC , #2B32B2);
+}
+
+.search{
+    background-color: rgb(220,220,220);
+}
+
+.blue-btn{
+    background-color: #0062cc;
+    color: white;
+    width: 14.5rem;
+}
+
+.blue-btn:hover{
+    color: #0062cc;
+    background-color: #7abaff;
+}
+
+.myTilte-search{
+    height: 2rem;
+    width: 14rem;
+}
+
+.myCatagorylb{
+    height: 3rem;
+    width: 10rem;
+}
+
+.myCategorySearch{
+    height: 2rem;
+    width: 11.18rem !important;
+}
+
+.my-search-p-tag{
+    color: #0062cc;
+}
+
+@media screen and (max-width: 768px){
+    .blue-btn{
+        width: 17rem;
+        margin-top: 1.7rem;
+    }
+}
+
+.NewBtn{
+    width: 5rem;
+    background-color: #0062cc;
+    color: white;
+}
+
+.NewBtn:hover{
+    color: #0062cc;
+    background-color: #7abaff;
+}
+
+.myCard{
+    width: 23rem;
+    z-index: -3;
+}
+
+.MyCardLink{
+    text-decoration: none;
+}
+
+.MyCardLink:hover{
+    text-decoration: none;
+}
+
+.MyTitleCard{
+    color: black;
+    margin-top: -0.6rem;
+}
+
+.MyBodyCard{
+    color: #383d41;
+    width: 85%;
+}
+
+.myImgCard-container{
+    background-color: #0062cc;
+    position: relative;
+    overflow: hidden;
+}
+
+.myImgCard{
+    transition: all 1s ease-in-out;
+}
+
+.MyCardLink:hover .myImgCard{
+    transform: scale(1.3);
+    opacity: 0.5;
+}
+
+.MyUserImgContainer{
+    width: 5rem;
+    height: 6rem;
+    margin-top: -2.5rem;
+    z-index: 2;
+}
+
+.MyUserImg{
+    width: 5rem;
+    height: 5rem;
+    border-radius: 100%;
+    border: 0.1rem solid #0062cc;
+}
+
+.card-header{
+    background-color: white;
+}
+
+.MyNav-link{
+    font-size: 2rem;
+    color: white;
+    transition: 0.4s all;
+    transform: scale(1);
+}
+
+.MyNav-link:hover{
+    font-size: 2.5rem;
+    color: #0062cc;
+    transform: scale(1.1) translateY(5%);
+}
+
+.myNavNavbar{
+    height: 15vh!important;
+    background-color: #383d41!important;
+}
+
+.UserSearch{
+    height: 10rem;
+    background-color: rgb(220,220,220);
+}
+
+.myUserSearchBtn{
+    width: 15rem;
+    background-color: #0062cc;
+    color: white;
+    height: 2rem;
+}
+
+.userInputTextSearch{
+    width: 15rem;
+    height: 2rem;
+}
+
+@media screen and (max-width: 576px){
+    .myUserSearchBtn{
+        margin-left: 3.75rem;
+        margin-top: 0.2rem;
+    }
+}
+
+.user-search-text{
+    color: #0062cc;
+}
+
+.myRegisterForm{
+    width: 20rem;
+    height: 20rem;
+    border: royalblue 1rem solid;
+    background-color: #0062cc;
+}
