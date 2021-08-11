@@ -13,4 +13,9 @@ public class usersController {
     public String showUsers(){
         return "users/users";
     }
+
+    @RequestMapping(value = "/register")
+    public String registerUser(){
+        return "users/registerUser";
+    }
 }
