@@ -17,4 +17,10 @@ public class postsController {
     public String registerPost(){
         return "/posts/registerPost";
     }
+
+    @RequestMapping(value = "/showPost" , method = RequestMethod.GET)
+    public String showPost(){
+        return "posts/showPost";
+    }
+
 }
