@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="/fragment/layout::head"></div>
+    <title>profile</title>
+</head>
+<body>
+
+<div th:replace="/fragment/layout::header"></div>
+
+<section class="sowUser py-5 " style="background-color: #6c757d">
+    <div class="container-fluid">
+        <div class="row d-flex justify-content-center">
+
+            <div class="col-lg-5 col-md-5 col-sm-10 m-3">
+                <div class="my-2">
+                    <h4 class="my-3">Id : 1</h4>
+                    <h4 class="my-3">Email : erfan01724@gmail.com</h4>
+                    <h4 class="my-3">Name : ErfAn</h4>
+                    <h4 class="my-3">Role : ADMIN</h4>
+                </div>
+            </div>
+
+            <div class="col-lg-5 col-md-5 col-sm-10 d-flex justify-content-center">
+                <img src="/img/back.jpg" class="float-lg-right float-md-right img-fluid rounded-circle" style="width: 15rem; height: 15rem;">
+            </div>
+
+        </div>
+
+        <div class="mx-3 my-4">
+            <button class="btn btn-success" style="width: 15rem">Edit Profile</button>
+        </div>
+    </div>
+</section>
+
+<div th:replace="/fragment/layout::footer"></div>
+</body>
+</html>

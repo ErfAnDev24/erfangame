@@ -18,4 +18,9 @@ public class usersController {
     public String registerUser(){
         return "users/registerUser";
     }
+
+    @RequestMapping(value = "/profile" , method = RequestMethod.GET)
+    public String showProfile(){
+        return "users/showUser";
+    }
 }
