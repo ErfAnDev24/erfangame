@@ -83,36 +83,15 @@
         </thead>
 
         <tbody>
-        <tr>
-            <th>1</th>
-            <td style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 1px">erfan01724@gmail.com</td>
-            <td style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 1px">ErfAn Pezeshkpour</td>
-            <td>ADMIN</td>
+        <tr th:each="user : ${users}">
+            <th th:text="${user.getId()}"></th>
+            <td th:text="${user.getEmail()}" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 1px"></td>
+            <td th:text="${user.getName()}" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 1px"></td>
+            <td></td>
 
-            <td><button class="btn btn-success mx-2">edit</button>
+            <td><a th:href="@{/users/edit/{id}(id=${user.getId()})}"><button class="btn btn-success mx-2">edit</button></a>
                 <button class="btn btn-danger">delete</button></td>
         </tr>
-
-        <tr>
-            <th>2</th>
-            <td style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 1px">nasheyhki@gmail.com</td>
-            <td style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 1px">nahid sheykhi</td>
-            <td>User</td>
-
-            <td><button class="btn btn-success mx-2">edit</button>
-                <button class="btn btn-danger">delete</button></td>
-        </tr>
-
-        <tr>
-            <th>3</th>
-            <td style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 1px">facebook@gmail.com</td>
-            <td style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 1px">Mark zuckerburg</td>
-            <td>User</td>
-
-            <td><button class="btn btn-success mx-2">edit</button>
-                <button class="btn btn-danger">delete</button></td>
-        </tr>
-
 
         </tbody>
 

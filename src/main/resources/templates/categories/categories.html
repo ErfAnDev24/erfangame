@@ -11,7 +11,7 @@
     <a th:href="@{/categories/register}"><button class="btn NewBtn m-3">NEW</button></a>
 </div>
 
-<table class="table my-3">
+<table class="table my-5">
     <thead class="table-light">
     <tr style="background-color: rgb(220,220,220)">
         <th>Id</th>
@@ -22,31 +22,15 @@
     </thead>
 
     <tbody>
-    <tr>
-        <td>6</td>
-        <td>Social</td>
-        <td>
-            <button type="button" class="btn btn-success">edit</button>
-            <button type="button" class="btn btn-danger">delete</button>
-        </td>
-    </tr>
+    <tr th:each="category : ${categories}">
+        <th th:text="${category.id}"></th>
+        <td th:text="${category.title}">Social</td>
 
-    <tr>
-        <td>6</td>
-        <td>Sport</td>
         <td>
-            <button type="button" class="btn btn-success">edit</button>
+            <a th:href="@{/categories/edit/{id}(id=${category.getId()})}"><button type="button" class="btn btn-success">edit</button></a>
             <button type="button" class="btn btn-danger">delete</button>
         </td>
-    </tr>
 
-    <tr>
-        <td>6</td>
-        <td>Science</td>
-        <td>
-            <button type="button" class="btn btn-success">edit</button>
-            <button type="button" class="btn btn-danger">delete</button>
-        </td>
     </tr>
 
     </tbody>

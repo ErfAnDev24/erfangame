@@ -140,6 +140,7 @@
 
 .myImgCard{
     transition: all 1s ease-in-out;
+    height: 20rem;
 }
 
 .MyCardLink:hover .myImgCard{

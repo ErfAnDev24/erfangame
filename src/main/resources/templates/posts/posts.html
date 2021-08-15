@@ -100,47 +100,21 @@
     </thead>
 
     <tbody>
-    <tr>
-        <td>4</td>
-        <td style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 1px">The Last of Us II</td>
-        <td><ul>
-            <li>Action</li>
-            <li>Drama</li>
-        </ul></td>
-        <td style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 1px">erfan01724@gmail.com</td>
+    <tr th:each="post : ${posts}">
+        <th th:text="${post.getId()}"></th>
+        <td th:text="${post.getTitle()}" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 1px"></td>
 
         <td>
-            <button type="button" class="btn-success btn">edit</button>
-            <button type="button" class="btn-danger btn">delete</button>
+            <ul>
+            <li th:each="category : ${post.getCategoryList()}"
+            th:text="${category.getTitle()}"></li>
+            </ul>
         </td>
-    </tr>
 
-    <tr>
-        <td>6</td>
-        <td style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 1px">The Last of Us 2013</td>
-        <td><ul>
-            <li>Action</li>
-            <li>Drama</li>
-        </ul></td>
-        <td style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 1px">erfan01724@gmail.com</td>
+        <td th:text="${post.getUsers().email}" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 1px"></td>
 
         <td>
-            <button type="button" class="btn-success btn">edit</button>
-            <button type="button" class="btn-danger btn">delete</button>
-        </td>
-    </tr>
-
-    <tr>
-        <td>5</td>
-        <td style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 1px">God Of War II</td>
-        <td><ul>
-            <li>Action</li>
-            <li>Drama</li>
-        </ul></td>
-        <td style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 1px">e@gmail.com</td>
-
-        <td>
-            <button type="button" class="btn-success btn">edit</button>
+            <a th:href="@{/posts/edit/{id}(id=${post.getId()})}"><button type="button" class="btn-success btn">edit</button></a>
             <button type="button" class="btn-danger btn">delete</button>
         </td>
     </tr>
