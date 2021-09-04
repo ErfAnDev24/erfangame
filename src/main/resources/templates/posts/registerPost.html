@@ -6,21 +6,23 @@
 </head>
 <body>
 
-<div class="container-fluid" style="margin-top: 6rem;"><h2 class="d-flex justify-content-center">Please insert post information</h2></div>
+<div class="container-fluid" style="margin-top: 2rem;"><h2 class="d-flex justify-content-center">Please insert post information</h2></div>
 
-<div class="container" style="margin-top: 2rem; border-radius: 2rem; border: rgb(210,210,210) 1px solid; width: 30rem; height: 30rem">
+<div class="container" style="margin-top: 2rem; border-radius: 2rem; border: rgb(210,210,210) 1px solid; width: 30rem; height: 38rem">
 
-    <form th:object="${post}" class="form-group" style="padding-top: 5rem; padding-left: 4rem" enctype="multipart/form-data" th:action="@{/posts/register}" method="post">
+    <form th:object="${post}" class="form-group" style="padding-top: 2.5rem; padding-left: 4rem" enctype="multipart/form-data" th:action="@{/posts/register}" method="post">
 
-        <input type="hidden" th:filed="*{id}">
+        <input type="hidden" th:field="*{id}">
 
-        <div class="d-flex align-items-baseline">
+        <div th:if="${#fields.hasErrors('title')}" class="my-3" th:errors="*{title}" style="color: red"></div>
+        <div class="d-flex my-3 align-items-baseline">
             <label for="title" class="text-nowrap m-2">title :</label>
             <input class="form-control" type="text" style="width: 15rem" id="title" th:field="*{title}">
         </div>
 
 
-        <div class="my-3 d-flex align-items-baseline" style="width: 18.2rem">
+        <div class="" th:if="${#fields.hasErrors('categoryList')}" th:errors="*{categoryList}" style="color: red"></div>
+        <div class="my-4 d-flex align-items-baseline" style="width: 18.2rem">
             <label class="text-nowrap mr-4" for="myMultiSelect">category :</label>
             <select multiple class="selectpicker" id="myMultiSelect" th:field="*{categoryList}">
                 <option th:each="category : ${categories}"
@@ -29,19 +31,22 @@
             </select>
         </div>
 
-        <div class="d-flex align-items-baseline">
+
+        <div th:if="${#fields.hasErrors('body')}" th:errors="*{body}" style="color: red"></div>
+        <div class="my-3 d-flex align-items-baseline">
             <label for="myBody" class="text-nowrap">Body :</label>
-            <textarea th:field="*{body}" id="myBody" class="ml-3 mb-4" style="resize: none; width: 14.6rem;
+            <textarea th:field="*{body}" id="myBody" class="ml-3 mb-2" style="resize: none; width: 14.6rem;
 height: 9rem"></textarea>
         </div>
+
 
         <div class="">
             <label for="myFile">photo :</label>
             <input type="file" id="myFile" th:field="*{file}">
         </div>
-
-        <div class="my-4 d-flex justify-content-center">
-            <button type="submit" style="width: 10rem" class="btn btn-primary">submit</button>
+        <div th:if="${#fields.hasErrors('file')}" th:errors="*{file}" style="color: red;"></div>
+        <div class="my-2 d-flex justify-content-center">
+            <button type="submit" style="width: 10rem" class="btn btn-primary my-2">submit</button>
         </div>
 
     </form>

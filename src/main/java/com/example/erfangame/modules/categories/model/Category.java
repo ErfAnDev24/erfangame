@@ -9,12 +9,12 @@ import java.util.List;
 @Entity
 public class Category {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue
     private Long id;
 
     private String title;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "categoryList")
     private List<Posts> postsList;
 
     public Long getId() {

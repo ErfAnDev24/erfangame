@@ -8,31 +8,38 @@
 
 <div class="container-fluid" style="margin-top: 6rem;"><h2 class="d-flex justify-content-center">Please insert personal information</h2></div>
 
-<div class="container" style="margin-top: 2rem; border-radius: 2rem; border: rgb(210,210,210) 1px solid; width: 30rem; height: 30rem">
+<div class="container" style="margin-top: 2rem; border-radius: 2rem; border: rgb(210,210,210) 1px solid; width: 30rem; height: 36rem">
     <form enctype="multipart/form-data" class="form-group" style="padding-top: 5rem; padding-left: 4rem" th:action="@{/users/register}" method="post" th:object="${user}">
 
+
         <input type="hidden" th:field="*{id}">
-        <div class="d-flex align-items-baseline">
+
+        <div class="mb-2" th:if="${#fields.hasErrors('email')}" th:errors="*{email}" style="color:red;"></div>
+        <div class="my-3 d-flex align-items-baseline">
             <label for="email" class="text-nowrap m-2">email :</label>
             <input class="form-control" type="text" style="width: 15rem" id="email" th:field="*{email}">
         </div>
 
+        <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color:red;"></div>
         <div class="d-flex align-items-baseline">
             <label for="name" class="text-nowrap mx-2 my-4">name :</label>
             <input class="form-control" type="text" style="width: 15rem" id="name" th:field="*{name}">
         </div>
 
+        <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" style="color:red;"></div>
         <div class="d-flex align-items-baseline">
             <label for="password" class="text-nowrap mx-2 my-4">password :</label>
             <input class="form-control" type="password" style="width: 13.4rem" id="password" th:field="*{password}">
         </div>
 
+        <div th:if="${#fields.hasErrors('roles')}" th:errors="*{roles}" style="color:red;"></div>
         <div class="my-3 d-flex align-items-baseline" style="width: 15rem">
             <label class="text-nowrap mr-4" for="myMultiSelect">Role :</label>
-            <select multiple class="selectpicker" id="myMultiSelect">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
+            <select multiple class="selectpicker" id="myMultiSelect" th:field="*{roles}">
+                <option th:each="role : ${roles}"
+                th:text="${role.name}"
+                th:value="${role.id}">
+                </option>
             </select>
         </div>
 

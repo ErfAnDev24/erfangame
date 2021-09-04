@@ -11,7 +11,7 @@
 <section class="UserSearch" style="height: 10rem">
     <p class="p-3 user-search-text">search a user that you want , based on email</p>
 
-    <form class="form-group">
+    <form class="form-group" method="get" th:action="@{/users}">
 
 
         <div class="container-fluid">
@@ -19,7 +19,7 @@
 
                 <div class="col-lg-6 col-md-6 col-sm-6 d-flex align-items-baseline justify-content-center">
                     <label for="myUserEmail" class="text-nowrap">email :</label>
-                    <input type="text" id="myUserEmail" class="form-control userInputTextSearch ml-3">
+                    <input th:value="${u.email}" type="text" id="myUserEmail" name="email" class="form-control userInputTextSearch ml-3">
                 </div>
 
                 <div class="col-lg-6 col-md-6 col-sm-6 d-flex justify-content-center">
@@ -44,24 +44,16 @@
     <div class="float-right">
         <ul class="pagination">
 
-            <li class="page-item">
-                <a href="#" class="page-link">previous</a>
+            <li class="page-item" th:classappend="${users.first} ? disabled">
+                <a th:href="@{/users/(page=${users.number - 1})}" class="page-link">previous</a>
             </li>
 
-            <li class="page-item">
-                <a href="#" class="page-link">1</a>
+            <li class="page-item" th:each="i : ${#numbers.sequence(0,users.totalPages - 1)}" th:classappend="${users.number == i} ? active">
+                <a th:href="@{/users/(page=${i})}" th:text="${i+1}" class="page-link"></a>
             </li>
 
-            <li class="page-item">
-                <a href="#" class="page-link">2</a>
-            </li>
-
-            <li class="page-item">
-                <a href="#" class="page-link">3</a>
-            </li>
-
-            <li class="page-item">
-                <a href="#" class="page-link">next</a>
+            <li class="page-item" th:classappend="${users.last} ? disabled">
+                <a th:href="@{/users/(page=${users.number + 1})}" class="page-link">next</a>
             </li>
 
         </ul>
@@ -87,10 +79,38 @@
             <th th:text="${user.getId()}"></th>
             <td th:text="${user.getEmail()}" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 1px"></td>
             <td th:text="${user.getName()}" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 1px"></td>
-            <td></td>
+
+            <td>
+                <ul>
+                    <li th:each="role : ${user.roles}"
+                    th:text="${role.name}">
+                </ul>
+            </td>
 
             <td><a th:href="@{/users/edit/{id}(id=${user.getId()})}"><button class="btn btn-success mx-2">edit</button></a>
-                <button class="btn btn-danger">delete</button></td>
+                    <button class="btn btn-danger" data-toggle="modal" th:data-target="'#delete' + ${user.getId()}">delete</button>
+            </td>
+
+
+            <!-- Modal -->
+            <div class="modal fade" th:id="'delete' + ${user.getId()}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle" th:text="'delete ' + ${user.getEmail()}"></h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body" th:text="'are you sure to delete ' + ${user.name}">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <a th:href="@{/users/delete/{id}(id=${user.getId()})}"><button type="button" class="btn btn-danger">delete</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </tr>
 
         </tbody>

@@ -1,10 +1,17 @@
 package com.example.erfangame.enums;
 
-public enum Authorities{
+import org.springframework.security.core.GrantedAuthority;
+
+public enum Authorities implements GrantedAuthority {
 
     USER,
     POST,
-    CATEGORY
+    CATEGORY,
+    ROLES,
+    ;
 
-
+    @Override
+    public String getAuthority() {
+        return name();
+    }
 }

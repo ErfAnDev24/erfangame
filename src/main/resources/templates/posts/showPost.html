@@ -7,28 +7,50 @@
 </head>
 <body>
 
-<div th:replace="/fragment/layout::header"></div>
+<div th:replace="/fragment/layout::header" ></div>
 
 <section class="postShow py-5">
     <div class="container-fluid">
         <div class="row">
 
-            <div class="col-lg-8 col-md-8">
-                <img src="/img/Last.jpg" class="img-fluid">
+            <div class="col-lg-6 col-md-6">
+
+                <img th:if="${post.get().cover.contains('stream')}" th:src="'/img/' + ${post.get().noImg}" class="img-fluid" style="width: 40rem; height: 30rem">
+
+                <img th:if="!${post.get().cover.contains('stream')}" th:src="'/img/' + ${post.get().cover}" class="img-fluid" style="width: 40rem; height: 30rem">
+
             </div>
 
-            <div class="col-lg-4 col-md-4">
-                <div class="pl-lg-5">
-                    <h4 class="myPostInfo">title : The Last of us II</h4>
-                    <h4 class="myPostInfo">created by : ErfAn</h4>
-                    <h4 class="myPostInfo">created At : 2019</h4>
-                    <h4 class="myPostInfo">updated At : 2020</h4>
+            <div class="col-lg-5 col-md-5 ml-lg-5">
+                <div>
+                    <div class="d-flex align-items-baseline my-5">
+                        <h3 class="font-weight-bold text-nowrap">Title : </h3><h4 class="ml-3 text-nowrap" style="color: white" th:text="${post.get().title}"></h4>
+                    </div>
+
+                    <div class="d-flex align-items-baseline my-5">
+                        <h3 class="font-weight-bold text-nowrap">Created by : </h3><h4 class="ml-3 text-nowrap" style="color: white" th:text="${post.get().users.name}"></h4>
+                    </div>
+
+                    <div class="d-flex align-items-baseline my-5">
+                        <h3 class="font-weight-bold text-nowrap">Categories : </h3><h4 class="ml-3 text-nowrap" style="color: white"><ul>
+                        <li th:each="category : ${post.get().categoryList}" th:text="${category.title}"></li>
+                    </ul></h4>
+                    </div>
+
+                    <div class="d-flex align-items-baseline my-5">
+                        <h3 class="font-weight-bold text-nowrap">Created At : </h3><h4 class="ml-3 text-nowrap" style="color: white" th:text="${#temporals.format(post.get().createdAt , 'yyyy-MM-dd HH:mm')}"></h4>
+                    </div>
+
+                    <div class="d-flex align-items-baseline my-5">
+                        <h3 class="font-weight-bold text-nowrap">Updated At : </h3><h4 class="ml-3 text-nowrap" style="color: white" th:text="${#temporals.format(post.get().updatedAt , 'yyyy-MM-dd HH:mm')}"></h4>
+                    </div>
+
                 </div>
             </div>
         </div>
 
-        <div class="row m-2">
-            <h3>body : </h3><p>The Last of Us Part II is a 2020 action-adventure game developed by Naughty Dog and published by Sony Interactive Entertainment for the PlayStation 4. Set five years after The Last of Us (2013), the game focuses on two playable characters in a post-apocalyptic United States whose lives intertwine: Ellie, who sets out for revenge after suffering a tragedy, and Abby, a soldier who becomes involved in a conflict between her militia and a religious cult. The game is played from the third-person perspective and allows the player to fight human enemies and cannibalistic zombie-like creatures with firearms, improvised weapons, and stealth</p>
+        <div class="row m-2 d-flex align-items-baseline">
+            <h3 class="font-weight-bold">body : </h3><h6 class="ml-3" th:text="${post.get().body}"></h6>
         </div>
     </div>
 </section>

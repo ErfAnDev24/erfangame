@@ -14,28 +14,27 @@
     <p class="mx-3 my-search-p-tag">search a post that you want based on title and category</p>
 
 
-    <form class="form-group">
+    <form class="form-group" th:action="@{/posts}" method="get">
 
         <div class="container-fluid">
             <div class="row d-flex justify-content-between align-items-baseline">
 
                 <div class="col-lg-3 d-flex col-md-6 my-md-4 align-items-baseline mb-sm-3 justify-content-sm-center">
                     <label for="myTilte-search" class="font-weight-bold text-nowrap">title :</label>
-                    <input type="text" class="form-control myTilte-search  ml-2" id="myTilte-search">
+                    <input type="text" th:value="${p.title}" name="title" class="form-control myTilte-search  ml-2" id="myTilte-search">
                 </div>
 
 
                 <div class="col-lg-3 d-flex align-items-baseline col-md-6 justify-content-sm-center">
                     <label for="myCategorySearch" class="mr-3 text-nowrap font-weight-bold">category :</label>
 
-                    <select multiple class="form-control selectpicker myCategorySearch"
+                    <select  name="categoryList" multiple class="form-control selectpicker myCategorySearch"
                             data-selected-text-format="count" id="myCategorySearch">
 
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
+                        <option th:each="category : ${categories}"
+                        th:text="${category.title}"
+                        th:value="${category.id}"
+                        th:selected="${p?.categoryList?.contains(category)}"></option>
 
                     </select>
 
@@ -63,24 +62,17 @@
     <div class="float-right">
         <ul class="pagination">
 
-            <li class="page-item">
-                <a href="#" class="page-link">previous</a>
+            <li class="page-item" th:classappend="${posts.first} ? disabled">
+                <a th:href="@{/posts(page=${posts.number - 1})}" class="page-link">previous</a>
             </li>
 
-            <li class="page-item">
-                <a href="#" class="page-link">1</a>
+            <li class="page-item" th:each="i : ${#numbers.sequence(0,posts.totalPages - 1)}"
+            th:classappend="${posts.number == i} ? active">
+                <a  th:href="@{/posts(page=${i})}" th:text="${i+1}" class="page-link"></a>
             </li>
 
-            <li class="page-item">
-                <a href="#" class="page-link">2</a>
-            </li>
-
-            <li class="page-item">
-                <a href="#" class="page-link">3</a>
-            </li>
-
-            <li class="page-item">
-                <a href="#" class="page-link">next</a>
+            <li class="page-item" th:classappend="${posts.last} ? disabled">
+                <a th:href="@{/posts(page=${posts.number + 1})}" class="page-link">next</a>
             </li>
 
         </ul>
@@ -107,16 +99,36 @@
         <td>
             <ul>
             <li th:each="category : ${post.getCategoryList()}"
-            th:text="${category.getTitle()}"></li>
+            th:text="${category.title}"></li>
             </ul>
         </td>
 
-        <td th:text="${post.getUsers().email}" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 1px"></td>
+        <td style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 1px"
+        th:text="${post.users.name}"></td>
 
         <td>
             <a th:href="@{/posts/edit/{id}(id=${post.getId()})}"><button type="button" class="btn-success btn">edit</button></a>
-            <button type="button" class="btn-danger btn">delete</button>
+            <button type="button" class="btn-danger btn" data-toggle="modal" th:data-target="'#delete' + ${post.getId()}">delete</button>
         </td>
+
+        <div class="modal fade" th:id="'delete' + ${post.getId()}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle" th:text="'delete ' + ${post.id}"></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true"></span>
+                        </button>
+                    </div>
+                    <div class="modal-body" th:text="'are you sure to delete ' + ${post.title}">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <a th:href="@{/posts/delete/{id}(id=${post.getId()})}"><button type="button" class="btn btn-danger">delete</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </tr>
 
     </tbody>

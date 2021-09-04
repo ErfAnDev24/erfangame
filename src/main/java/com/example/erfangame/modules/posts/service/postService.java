@@ -1,8 +1,8 @@
 package com.example.erfangame.modules.posts.service;
 
+import com.example.erfangame.MyBeanCopy;
 import com.example.erfangame.modules.posts.model.Posts;
 import com.example.erfangame.modules.posts.repository.postsRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -10,8 +10,8 @@ import org.springframework.util.ResourceUtils;
 
 import javax.transaction.Transactional;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Objects;
@@ -24,8 +24,7 @@ public class postService {
 
     private postsRepository postsRepository;
 
-    @Autowired
-    public postService(com.example.erfangame.modules.posts.repository.postsRepository postsRepository) {
+    public postService(postsRepository postsRepository) {
         this.postsRepository = postsRepository;
     }
 
@@ -34,7 +33,7 @@ public class postService {
     }
 
     @Transactional
-    public void registerPost(Posts posts) throws IOException {
+    public Posts registerPost(Posts posts) throws IOException, InvocationTargetException, IllegalAccessException {
 
         String path = ResourceUtils.
                 getFile("classpath:static/img").getAbsolutePath();
@@ -44,10 +43,26 @@ public class postService {
         Files.write(Paths.get(path + File.separator + name),bytes);
         posts.setCover(name);
 
-        postsRepository.save(posts);
+        if(posts.getId() !=null){
+            Posts exists = postsRepository.getById(posts.getId());
+            MyBeanCopy myBeanCopy = new MyBeanCopy();
+            myBeanCopy.copyProperties(exists , posts);
+            return postsRepository.save(posts);
+        }
+
+        return postsRepository.save(posts);
     }
 
     public Optional<Posts> findPostById(Long id) {
         return postsRepository.findById(id);
+    }
+
+    @Transactional
+    public void deleteById(Long id) {
+        postsRepository.deleteById(id);
+    }
+
+    public Page<Posts> findBySearch(Posts posts,Pageable pageable) {
+        return postsRepository.findBySearch(posts,pageable, (long) (posts.getCategoryList() !=null ? posts.getCategoryList().size() : 0));
     }
 }

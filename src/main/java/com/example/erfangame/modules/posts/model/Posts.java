@@ -2,36 +2,62 @@ package com.example.erfangame.modules.posts.model;
 
 import com.example.erfangame.modules.categories.model.Category;
 import com.example.erfangame.modules.users.model.Users;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Posts {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue
     private Long id;
 
+    @NotBlank(message = "* your post need a body")
     private String body;
 
+    @NotBlank(message = "* please insert a title for your post")
     private String title;
+
+
+    private String noImg = "NoPostImg.jpg";
 
     private String cover;
 
     @Transient
+    @NotNull(message = "* please choose a file for your post")
     private MultipartFile file;
 
+    @CreationTimestamp
+    @Column(updatable = false)
     private LocalDateTime createdAt;
 
+    @UpdateTimestamp
     private LocalDateTime updatedAt;
 
-    @ManyToMany(mappedBy = "postsList")
+    @ManyToMany
+    @NotEmpty(message = "* please select a category for your post")
     private List<Category> categoryList;
 
     @ManyToOne
     private Users users;
+
+    public String getNoImg() {
+        return noImg;
+    }
+
+    public void setNoImg(String noImg) {
+        this.noImg = noImg;
+    }
 
     public Long getId() {
         return id;

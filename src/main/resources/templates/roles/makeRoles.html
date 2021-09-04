@@ -7,7 +7,60 @@
 <body>
 <div th:replace="/fragment/layout::header"></div>
 
-<div></div>
+<div class="my-2">
+    <a th:href="@{/roles/register}"><button type="button" class="btn blue-btn m-3" style="width: 5rem">NEW</button></a>
+</div>
+
+<table class="table my-5">
+
+<thead class="table-light">
+<tr>
+    <th scope="col">ID</th>
+    <th scope="col">Name</th>
+    <th scope="col">Accesses</th>
+    <th scope="col"></th>
+</tr>
+</thead>
+
+    <tbody>
+
+    <tr th:each="role : ${roles}">
+        <td th:text="${role.getId()}"></td>
+        <td th:text="${role.getName()}"></td>
+        <td>
+            <ul>
+                <li th:each="authority : ${role.getAuthorities()}"
+                th:text="${authority}"></li>
+            </ul>
+        </td>
+
+        <td>
+            <a th:href="@{/roles/edit/{id}(id=${role.getId()})}"><button class="btn btn-success">edit</button></a>
+            <button class="btn btn-danger" data-toggle="modal" th:data-target="'#delete' + ${role.getId()}">delete</button>
+        </td>
+
+        <div class="modal fade" th:id="'delete' + ${role.getId()}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle" th:text="'delete ' + ${role.id}"></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" th:text="'are you sure to delete ' + ${role.name}">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <a th:href="@{/roles/delete/{id}(id=${role.getId()})}"><button type="button" class="btn btn-danger">delete</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </tr>
+
+    </tbody>
+</table>
 
 <div th:replace="/fragment/layout::footer"></div>
 </body>
